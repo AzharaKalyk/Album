@@ -2,6 +2,8 @@ import UIKit
 
 final class SectionHeaderView: UICollectionReusableView {
     
+    static let identifier = "SectionHeader"
+    
     // MARK: - Elements
     
     lazy var titleLabel: UILabel = {
@@ -49,41 +51,14 @@ final class SectionHeaderView: UICollectionReusableView {
             allButton.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
-    
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeaderView
-            
-            switch indexPath.section {
-            case 0:
-                headerView.titleLabel.text = "Мои альбомы"
-                headerView.allButton.isHidden = false
-            case 1:
-                headerView.titleLabel.text = "Общие альбомы"
-                headerView.allButton.isHidden = true
-            case 2:
-                headerView.titleLabel.text = "Типы медиафайлов"
-                headerView.allButton.isHidden = true
-            case 3:
-                headerView.titleLabel.text = "Другое"
-                headerView.allButton.isHidden = true
-            default:
-                headerView.titleLabel.text = ""
-                headerView.allButton.isHidden = true
-            }
-            
-            return headerView
-        }
-        return UICollectionReusableView()
-    }
-}
+// MARK: -UICollectionReusableView
 
 final class SectionSeparatorView: UICollectionReusableView {
+    static let identifier = "SectionSeparatorView"
+    static let elementKind = "SectionElementKind"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemGray4

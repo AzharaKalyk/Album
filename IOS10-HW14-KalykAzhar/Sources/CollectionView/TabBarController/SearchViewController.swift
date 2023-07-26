@@ -1,6 +1,6 @@
 import UIKit
 
-class FourthTabBarViewController: UIViewController {
+class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
