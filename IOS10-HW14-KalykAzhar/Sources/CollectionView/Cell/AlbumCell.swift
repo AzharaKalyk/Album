@@ -44,32 +44,38 @@ final class AlbumCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        configure()
+        setupHierarchy()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
-}
-
-extension AlbumCell {
-    func configure() {
+    
+    private func setupHierarchy() {
         contentView.addSubviewsForAutoLayout([
-        photoImageView,
-        namePhotoLabel,
-        numberPhotosLabel,
+            photoImageView,
+            namePhotoLabel,
+            numberPhotosLabel,
         ])
-        
+    }
+    
+    private func setupLayout() {
         NSLayoutConstraint.activate([
-            photoImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            photoImageView.topAnchor.constraint(equalTo: topAnchor),
+            photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor),
-            
             namePhotoLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: Metric.indent),
-            
             numberPhotosLabel.topAnchor.constraint(equalTo: namePhotoLabel.bottomAnchor, constant: Metric.indent),
         ])
     }
+    
+    // MARK: - Configuration
+    
+    func configuration(model: ItemModel) {
+        photoImageView.image = UIImage(named: model.image)
+        namePhotoLabel.text = model.name
+        numberPhotosLabel.text = model.description
+    }
 }
-

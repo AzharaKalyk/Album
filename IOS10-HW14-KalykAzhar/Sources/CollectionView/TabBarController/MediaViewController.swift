@@ -1,6 +1,6 @@
 import UIKit
 
-class FirstTabBarViewController: UIViewController {
+class MediaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red

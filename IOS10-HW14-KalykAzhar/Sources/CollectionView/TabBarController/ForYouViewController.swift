@@ -1,6 +1,6 @@
 import UIKit
 
-class SecondTabBarViewController: UIViewController {
+class ForYouViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
