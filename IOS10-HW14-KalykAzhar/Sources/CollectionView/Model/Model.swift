@@ -8,7 +8,7 @@ struct ItemModel: Equatable {
 
 struct SectionModel {
     var title: String
-    var buttonIsHidden: Bool?
+    var buttonIsHidden: String?
     var items: [ItemModel]
 }
 
@@ -16,7 +16,7 @@ extension SectionModel {
     static var sectionModels: [SectionModel] = [
         SectionModel(
             title: "Мои альбомы",
-            buttonIsHidden: false,
+            buttonIsHidden: "Все",
             items: [
                 ItemModel(image: "1", name: "Недавние", description: "77"),
                 ItemModel(image: "2", name: "Избранное", description: "23"),
@@ -30,6 +30,7 @@ extension SectionModel {
         ),
         SectionModel(
             title: "Общие альбомы",
+            buttonIsHidden: nil,
             items: [
                 ItemModel(image: "9", name: "Отдых", description: "98"),
                 ItemModel(image: "10", name: "Развитие", description: "44"),
@@ -39,6 +40,7 @@ extension SectionModel {
         ),
         SectionModel(
             title: "Типы медиафайлов",
+            buttonIsHidden: nil,
             items: [
                 ItemModel(image: "video", name: "Видео", description: "22"),
                 ItemModel(image: "person.crop.square", name: "Селфи", description: "93"),
@@ -50,6 +52,7 @@ extension SectionModel {
         ),
         SectionModel(
             title: "Другое",
+            buttonIsHidden: nil,
             items: [
                 ItemModel(image: "square.stack.3d.forward.dottedline", name: "Анимирование", description: "34"),
                 ItemModel(image: "square.and.arrow.down", name: "Импортированные", description: "12"),

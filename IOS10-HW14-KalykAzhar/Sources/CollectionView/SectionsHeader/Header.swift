@@ -16,7 +16,6 @@ final class SectionHeaderView: UICollectionReusableView {
     
     lazy var allButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Все", for: .normal)
         
         return button
     }()

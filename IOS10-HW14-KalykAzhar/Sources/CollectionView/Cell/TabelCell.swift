@@ -14,7 +14,7 @@ final class TabelCell: UICollectionViewCell {
     }
     // MARK: - Properties
     
-    lazy var iconView: UIImageView = {
+    private lazy var iconView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
@@ -23,7 +23,7 @@ final class TabelCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 20, weight: .regular)
@@ -32,7 +32,7 @@ final class TabelCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var numberPhotosLabel: UILabel = {
+    private lazy var numberPhotosLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 17, weight: .regular)
@@ -41,7 +41,7 @@ final class TabelCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var button: UIButton = {
+    private lazy var button: UIButton = {
         let button = UIButton()
         button.layer.masksToBounds = true
         let image = UIImage(systemName: "chevron.right", withConfiguration: UIImage.SymbolConfiguration(pointSize: 16, weight: .semibold))?.withTintColor(.systemGray4, renderingMode: .alwaysOriginal)
@@ -50,7 +50,7 @@ final class TabelCell: UICollectionViewCell {
         return button
     }()
     
-    lazy var lineSeparators: UIView = {
+    private lazy var lineSeparators: UIView = {
         let line = UIView()
         line.backgroundColor = .systemGray4
         line.translatesAutoresizingMaskIntoConstraints = false
@@ -106,8 +106,12 @@ final class TabelCell: UICollectionViewCell {
     // MARK: - Configuration
     
     func configuration(model: ItemModel) {
-        iconView.image = UIImage(named: model.image)
-        nameLabel.text = model.description
-        numberPhotosLabel.text = model.description
+            if let systemSymbol = UIImage(systemName: model.image) {
+                iconView.image = systemSymbol
+            } else {
+                iconView.image = UIImage(named: "")
+            }
+            nameLabel.text = model.name
+            numberPhotosLabel.text = model.description
+        }
     }
-}

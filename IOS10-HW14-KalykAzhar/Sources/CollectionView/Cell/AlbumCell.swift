@@ -13,7 +13,7 @@ final class AlbumCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    lazy var photoImageView: UIImageView = {
+    private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = Metric.photoRadius
         imageView.contentMode = .scaleAspectFill
@@ -23,7 +23,7 @@ final class AlbumCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var namePhotoLabel: UILabel = {
+    private lazy var namePhotoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 17)
@@ -31,7 +31,7 @@ final class AlbumCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var numberPhotosLabel: UILabel = {
+    private lazy var numberPhotosLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 17)
