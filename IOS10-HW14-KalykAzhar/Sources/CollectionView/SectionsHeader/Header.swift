@@ -6,7 +6,7 @@ final class SectionHeaderView: UICollectionReusableView {
     
     // MARK: - Elements
     
-    lazy var titleLabel: UILabel = {
+   private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .left
@@ -14,7 +14,7 @@ final class SectionHeaderView: UICollectionReusableView {
         return label
     }()
     
-    lazy var allButton: UIButton = {
+    private lazy var allButton: UIButton = {
         let button = UIButton(type: .system)
         
         return button
@@ -49,6 +49,16 @@ final class SectionHeaderView: UICollectionReusableView {
             allButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             allButton.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
+    }
+    
+    func configure(title: String, isButtonHidden: String?) {
+        titleLabel.text = title
+        if let buttonTitle = isButtonHidden {
+            allButton.isHidden = false
+            allButton.setTitle(buttonTitle, for: .normal)
+        } else {
+            allButton.isHidden = true
+        }
     }
 }
 
