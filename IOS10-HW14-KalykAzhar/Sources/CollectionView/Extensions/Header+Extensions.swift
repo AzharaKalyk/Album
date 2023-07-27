@@ -6,19 +6,20 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.identifier, for: indexPath) as? SectionHeaderView {
-                
-                let sectionModel: SectionModel = SectionModel.sectionModels[indexPath.section]
-                headerView.titleLabel.text = sectionModel.title
-                headerView.allButton.setTitle(sectionModel.buttonIsHidden, for: .normal)
-                
-                return headerView
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.identifier, for: indexPath) as? SectionHeaderView else {
+                return UICollectionReusableView()
             }
+            
+            let sectionModel: SectionModel = SectionModel.sectionModels[indexPath.section]
+            headerView.configure(title: sectionModel.title, isButtonHidden: sectionModel.buttonIsHidden)
+            
+            return headerView
         } else if kind == SectionSeparatorView.elementKind {
-            if let separatorView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionSeparatorView.identifier, for: indexPath) as? SectionSeparatorView {
-                
-                return separatorView
+            guard let separatorView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionSeparatorView.identifier, for: indexPath) as? SectionSeparatorView else {
+                return UICollectionReusableView()
             }
+            
+            return separatorView
         }
         return UICollectionReusableView()
     }
